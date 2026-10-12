@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CarePoint | Hospital Appointment System</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <a href="#" class="logo">✚ CarePoint</a>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#doctors">Doctors</a>
+      <a href="#booking">Book Appointment</a>
+      <a href="#appointments">My Appointments</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <p class="eyebrow">YOUR HEALTH, OUR PRIORITY</p>
+        <h1>Book Your Hospital Appointment Online</h1>
+        <p>
+          Find the right doctor and schedule your appointment
+          quickly and conveniently.
+        </p>
+        <a class="btn primary" href="#booking">Book an Appointment</a>
+      </div>
+      <div class="hero-icon" aria-hidden="true">✚</div>
+    </section>
+
+    <section class="section" id="doctors">
+      <div class="section-heading">
+        <p class="eyebrow">OUR SPECIALISTS</p>
+        <h2>Meet Our Doctors</h2>
+        <p>Choose a specialist for your appointment.</p>
+      </div>
+
+      <div class="doctor-grid">
+        <article class="doctor-card">
+          <div class="doctor-avatar">👨‍⚕️</div>
+          <h3>Dr. Arun Kumar</h3>
+          <p>Cardiologist</p>
+          <button class="btn secondary doctor-select"
+            data-doctor="Dr. Arun Kumar">Select Doctor</button>
+        </article>
+
+        <article class="doctor-card">
+          <div class="doctor-avatar">👩‍⚕️</div>
+          <h3>Dr. Priya Sharma</h3>
+          <p>Dermatologist</p>
+          <button class="btn secondary doctor-select"
+            data-doctor="Dr. Priya Sharma">Select Doctor</button>
+        </article>
+
+        <article class="doctor-card">
+          <div class="doctor-avatar">👨‍⚕️</div>
+          <h3>Dr. Ravi Raj</h3>
+          <p>General Physician</p>
+          <button class="btn secondary doctor-select"
+            data-doctor="Dr. Ravi Raj">Select Doctor</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="section booking-section" id="booking">
+      <div class="section-heading">
+        <p class="eyebrow">SCHEDULE A VISIT</p>
+        <h2>Book an Appointment</h2>
+        <p>Enter your details to schedule your visit.</p>
+      </div>
+
+      <form id="appointmentForm" class="appointment-form">
+        <div class="form-grid">
+          <div class="field">
+            <label for="patientName">Patient Name</label>
+            <input id="patientName" name="patientName"
+              type="text" maxlength="100" required
+              placeholder="Enter your full name">
+          </div>
+
+          <div class="field">
+            <label for="email">Email Address</label>
+            <input id="email" name="email" type="email"
+              maxlength="254" required
+              placeholder="you@example.com">
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone Number</label>
+            <input id="phone" name="phone" type="tel"
+              maxlength="15" required
+              pattern="[0-9+() -]{7,15}"
+              placeholder="Enter phone number">
+          </div>
+
+          <div class="field">
+            <label for="doctor">Select Doctor</label>
+            <select id="doctor" name="doctor" required>
+              <option value="">Choose a doctor</option>
+              <option value="Dr. Arun Kumar">
+                Dr. Arun Kumar — Cardiologist
+              </option>
+              <option value="Dr. Priya Sharma">
+                Dr. Priya Sharma — Dermatologist
+              </option>
+              <option value="Dr. Ravi Raj">
+                Dr. Ravi Raj — General Physician
+              </option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="date">Appointment Date</label>
+            <input id="date" name="date" type="date" required>
+          </div>
+
+          <div class="field">
+            <label for="time">Appointment Time</label>
+            <select id="time" name="time" required>
+              <option value="">Choose a time</option>
+              <option value="09:00">09:00 AM</option>
+              <option value="10:00">10:00 AM</option>
+              <option value="11:00">11:00 AM</option>
+              <option value="12:00">12:00 PM</option>
+              <option value="14:00">02:00 PM</option>
+              <option value="15:00">03:00 PM</option>
+              <option value="16:00">04:00 PM</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="reason">Reason for Visit (Optional)</label>
+          <textarea id="reason" name="reason" rows="3"
+            maxlength="500"
+            placeholder="Briefly describe the reason for your visit"></textarea>
+        </div>
+
+        <button class="btn primary submit-btn" type="submit">
+          Confirm Appointment
+        </button>
+
+        <p id="message" class="message" role="status"
+          aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="section" id="appointments">
+      <div class="section-heading">
+        <p class="eyebrow">YOUR SCHEDULE</p>
+        <h2>My Appointments</h2>
+        <p>Appointments saved in this browser.</p>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Patient</th>
+              <th>Doctor</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="appointmentList">
+            <tr>
+              <td colspan="6" class="empty">
+                No appointments booked yet.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">
+        Demo only: this list is not private to a logged-in patient.
+        Do not enter real medical or personal information.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 CarePoint Hospital Appointment System</p>
+    <p>Educational mini project — not a real hospital booking service.</p>
+  </footer>
+</body>
+</html>
